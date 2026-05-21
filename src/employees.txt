@@ -1,0 +1,9 @@
+Employee ID      : 2
+Employee Name    : a
+Department       : a
+Designation      : a
+Salary           : 1.0
+Manager Name     : Sai
+Experience       : 2 years
+Promotion Status : Not Promoted
+----------------------------------------

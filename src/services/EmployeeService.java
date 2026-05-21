@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class EmployeeService {
     private ArrayList<Employee> employees = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
-    private static final String FILE_PATH = "data/employees.txt";
+    private static final String FILE_PATH = "employees.txt";
 
     public EmployeeService() {
         loadEmployees();

@@ -30,3 +30,11 @@ Check-Out : 01:04:58
 ----------------------
 Bigil,Employee
 mohanchb123@gmail.com,Admin
+===== USER DATA =====
+Username : a
+Password : a@123
+Role : Employee
+Check-In : 19:30:41
+Check-Out : 03:30:41
+----------------------
+a,Employee
