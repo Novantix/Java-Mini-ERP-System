@@ -1,10 +1,8 @@
 package services;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import models.Customer;
 import models.Sale;
 
@@ -12,6 +10,13 @@ public class SalesService {
 
     ArrayList<Customer> customers = new ArrayList<>();
     ArrayList<Sale> sales = new ArrayList<>();
+
+    // Constructor
+    public SalesService() {
+
+        loadCustomers();
+        loadSales();
+    }
 
     public void addCustomer(Scanner sc) {
 
@@ -110,6 +115,7 @@ public class SalesService {
         }
     }
 
+    // SAVE CUSTOMER
     private void saveCustomer(Customer customer) {
 
         try {
@@ -126,6 +132,7 @@ public class SalesService {
         }
     }
 
+    // SAVE SALE
     private void saveSale(Sale sale) {
 
         try {
@@ -139,6 +146,74 @@ public class SalesService {
         } catch (IOException e) {
 
             System.out.println("Error Saving Sale");
+        }
+    }
+
+    // LOAD CUSTOMERS FROM FILE
+    private void loadCustomers() {
+
+        try {
+
+            File file = new File("data/customers.txt");
+
+            if (!file.exists()) {
+                return;
+            }
+
+            Scanner fileScanner = new Scanner(file);
+
+            while (fileScanner.hasNextLine()) {
+
+                String line = fileScanner.nextLine();
+
+                String[] data = line.split(",");
+
+                int id = Integer.parseInt(data[0]);
+                String name = data[1];
+                String phone = data[2];
+
+                customers.add(new Customer(id, name, phone));
+            }
+
+            fileScanner.close();
+
+        } catch (Exception e) {
+
+            System.out.println("Error Loading Customers");
+        }
+    }
+
+    // LOAD SALES FROM FILE
+    private void loadSales() {
+
+        try {
+
+            File file = new File("data/sales.txt");
+
+            if (!file.exists()) {
+                return;
+            }
+
+            Scanner fileScanner = new Scanner(file);
+
+            while (fileScanner.hasNextLine()) {
+
+                String line = fileScanner.nextLine();
+
+                String[] data = line.split(",");
+
+                int id = Integer.parseInt(data[0]);
+                String productName = data[1];
+                double amount = Double.parseDouble(data[2]);
+
+                sales.add(new Sale(id, productName, amount));
+            }
+
+            fileScanner.close();
+
+        } catch (Exception e) {
+
+            System.out.println("Error Loading Sales");
         }
     }
 }
